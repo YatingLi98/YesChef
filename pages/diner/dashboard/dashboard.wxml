@@ -1,0 +1,58 @@
+<!--pages/eater/dashboard/dashboard.wxml-->
+<view class="container">
+  <view class="header">
+    <text class="header-title">My Food Stats</text>
+    <text class="header-subtitle">Your ordering insights</text>
+  </view>
+
+  <view class="stats-overview">
+    <view class="stat-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+      <text class="stat-value">{{stats.totalOrders}}</text>
+      <text class="stat-label">Total Orders</text>
+    </view>
+    <view class="stat-card" style="background: linear-gradient(135deg, #51cf66 0%, #40c057 100%);">
+      <text class="stat-value">{{stats.completedOrders}}</text>
+      <text class="stat-label">Completed</text>
+    </view>
+  </view>
+
+  <view class="top-foods-section">
+    <view class="section-header">
+      <text class="section-title">🔥 Top 3 Favorites</text>
+    </view>
+
+    <view wx:if="{{stats.topFoods.length === 0}}" class="empty-state">
+      <text class="empty-icon">📊</text>
+      <text class="empty-text">No data yet. Start ordering!</text>
+    </view>
+
+    <view wx:else class="top-foods-list">
+      <view class="food-rank-card" wx:for="{{stats.topFoods}}" wx:key="foodId">
+        <view class="rank-badge rank-{{index + 1}}">
+          <text class="rank-number">{{index + 1}}</text>
+        </view>
+        <view class="food-rank-info">
+          <text class="food-rank-name">{{item.foodName}}</text>
+          <text class="food-rank-count">Ordered {{item.count}} times</text>
+        </view>
+        <view class="food-rank-icon">
+          <text wx:if="{{index === 0}}">🥇</text>
+          <text wx:elif="{{index === 1}}">🥈</text>
+          <text wx:elif="{{index === 2}}">🥉</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="insights-section">
+    <view class="section-header">
+      <text class="section-title">💡 Insights</text>
+    </view>
+    <view class="insight-card">
+      <text class="insight-icon">🎯</text>
+      <text class="insight-text">
+        {{stats.completedOrders > 0 ? 'You have great taste! Keep exploring new dishes.' : 'Start your food journey today!'}}
+      </text>
+    </view>
+  </view>
+</view>

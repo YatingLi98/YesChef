@@ -1,0 +1,37 @@
+<!--pages/shared/food-detail/food-detail.wxml-->
+<view class="container">
+  <swiper class="image-swiper" indicator-dots="{{true}}" autoplay="{{false}}">
+    <swiper-item wx:for="{{food.images}}" wx:key="*this">
+      <image src="{{item}}" class="detail-image" mode="aspectFill"></image>
+    </swiper-item>
+  </swiper>
+
+  <view class="content-section">
+    <view class="food-header">
+      <text class="food-name">{{food.name}}</text>
+      <view class="food-meta">
+        <text class="chef-info">👨‍🍳 {{food.chefName}}</text>
+      </view>
+    </view>
+
+    <view class="food-tags" wx:if="{{food.tags && food.tags.length > 0}}">
+      <text class="tag" wx:for="{{food.tags}}" wx:key="*this">{{item}}</text>
+    </view>
+
+    <view class="section">
+      <text class="section-title">📝 Description</text>
+      <text class="section-content">{{food.description}}</text>
+    </view>
+
+    <view class="section">
+      <text class="section-title">👩‍🍳 Cooking Instructions</text>
+      <text class="section-content instructions">{{food.instructions}}</text>
+    </view>
+  </view>
+
+  <view class="bottom-actions" wx:if="{{isDiner}}">
+    <button class="btn btn-primary btn-block btn-large" bindtap="onAddToCart">
+      Add to Cart
+    </button>
+  </view>
+</view>

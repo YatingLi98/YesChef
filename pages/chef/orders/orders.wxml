@@ -1,0 +1,78 @@
+<!--pages/chef/orders/orders.wxml-->
+<view class="container">
+  <view class="header">
+    <text class="header-title">Order Management</text>
+  </view>
+
+  <view class="tabs">
+    <view 
+      class="tab-item {{currentTab === 'pending' ? 'active' : ''}}" 
+      bindtap="onTabChange" 
+      data-tab="pending"
+    >
+      <text>Pending ({{pendingCount}})</text>
+    </view>
+    <view 
+      class="tab-item {{currentTab === 'completed' ? 'active' : ''}}" 
+      bindtap="onTabChange" 
+      data-tab="completed"
+    >
+      <text>Completed ({{completedCount}})</text>
+    </view>
+  </view>
+
+  <view wx:if="{{orderList.length === 0}}" class="empty-state">
+    <text class="empty-icon">📦</text>
+    <text class="empty-text">No {{currentTab}} orders</text>
+  </view>
+
+  <view wx:else class="order-list">
+    <view class="order-card" wx:for="{{orderList}}" wx:key="id">
+      <view class="order-header">
+        <view class="order-info">
+          <text class="order-id">Order #{{item.id.slice(-6)}}</text>
+          <text class="order-time">{{item.createdAt}}</text>
+        </view>
+        <view class="badge badge-{{item.status === 'pending' ? 'warning' : 'success'}}">
+          {{item.status}}
+        </view>
+      </view>
+
+      <view class="order-customer">
+        <text class="customer-label">Customer:</text>
+        <text class="customer-name">{{item.userName}}</text>
+      </view>
+
+      <view class="order-items">
+        <view class="order-item" wx:for="{{item.items}}" wx:key="foodId" wx:for-item="food">
+          <view class="item-info">
+            <text class="item-name">{{food.foodName}}</text>
+            <text class="item-quantity">× {{food.quantity}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="order-note" wx:if="{{item.note}}">
+        <text class="note-label">Note:</text>
+        <text class="note-text">{{item.note}}</text>
+      </view>
+
+      <view class="order-actions" wx:if="{{item.status === 'pending'}}">
+        <button 
+          class="btn btn-success btn-small" 
+          bindtap="onConfirmOrder" 
+          data-id="{{item.id}}"
+        >
+          ✓ Confirm
+        </button>
+        <button 
+          class="btn btn-outline btn-small ml-10" 
+          bindtap="onCancelOrder" 
+          data-id="{{item.id}}"
+        >
+          × Cancel
+        </button>
+      </view>
+    </view>
+  </view>
+</view>

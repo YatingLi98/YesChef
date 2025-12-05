@@ -1,0 +1,72 @@
+<!--pages/eater/menu/menu.wxml-->
+<view class="container">
+  <view class="header">
+    <view class="header-content">
+      <text class="header-title">Browse Menu</text>
+      <text class="header-subtitle">Select your favorite dishes</text>
+    </view>
+    <button class="btn btn-outline btn-small" bindtap="onSearchChef">
+      🔍 Find Chef
+    </button>
+  </view>
+
+  <view class="chef-selector" wx:if="{{selectedChefId}}">
+    <view class="chef-info">
+      <text class="chef-label">Ordering from:</text>
+      <text class="chef-name">{{chefName}}</text>
+    </view>
+    <text class="change-chef" bindtap="onChangeChef">Change</text>
+  </view>
+
+  <view class="cart-summary" wx:if="{{cart.length > 0}}">
+    <view class="cart-info">
+      <text class="cart-icon">🛒</text>
+      <text class="cart-text">{{cart.length}} item(s) in cart</text>
+    </view>
+    <button class="btn btn-primary btn-small" bindtap="onViewCart">
+      View Cart
+    </button>
+  </view>
+
+  <view wx:if="{{!selectedChefId}}" class="empty-state">
+    <text class="empty-icon">👨‍🍳</text>
+    <text class="empty-text">Search for a chef to view their menu</text>
+    <button class="btn btn-primary mt-30" bindtap="onSearchChef">
+      Find Chef
+    </button>
+  </view>
+
+  <view wx:elif="{{foodList.length === 0}}" class="empty-state">
+    <text class="empty-icon">🍽️</text>
+    <text class="empty-text">This chef hasn't added any dishes yet</text>
+  </view>
+
+  <view wx:else class="food-grid">
+    <view 
+      class="food-item" 
+      wx:for="{{foodList}}" 
+      wx:key="id"
+      bindtap="onViewFood"
+      data-id="{{item.id}}"
+    >
+      <image src="{{item.images[0]}}" class="food-item-image" mode="aspectFill"></image>
+      <view class="food-item-content">
+        <text class="food-item-title">{{item.name}}</text>
+        <text class="food-item-desc">{{item.description}}</text>
+        <view class="food-item-tags">
+          <text class="tag" wx:for="{{item.tags}}" wx:key="*this" wx:for-item="tag">{{tag}}</text>
+        </view>
+        <view class="food-item-footer">
+          <text class="chef-badge">by {{item.chefName}}</text>
+          <button 
+            class="btn-add" 
+            catchtap="onAddToCart"
+            data-id="{{item.id}}"
+          >
+            + Add
+          </button>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

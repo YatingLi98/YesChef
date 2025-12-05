@@ -1,0 +1,150 @@
+/* pages/login/login.wxss */
+.login-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60rpx 40rpx;
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 80rpx;
+}
+
+.login-title {
+  display: block;
+  font-size: 56rpx;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 20rpx;
+}
+
+.login-subtitle {
+  display: block;
+  font-size: 28rpx;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.login-form {
+  width: 100%;
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 50rpx 40rpx;
+  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.1);
+}
+
+.role-selector {
+  margin-bottom: 30rpx;
+}
+
+.role-options {
+  display: flex;
+  gap: 20rpx;
+  margin-top: 10rpx;
+}
+
+.role-option {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30rpx 20rpx;
+  border: 3rpx solid #e9ecef;
+  border-radius: 16rpx;
+  background: #fff;
+  transition: all 0.3s;
+}
+
+.role-option.active {
+  border-color: #ff6b6b;
+  background: #fff5f5;
+}
+
+.role-icon {
+  font-size: 48rpx;
+  margin-bottom: 10rpx;
+}
+
+.role-text {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.role-option.active .role-text {
+  color: #ff6b6b;
+  font-weight: bold;
+}
+
+.login-footer {
+  text-align: center;
+  margin-top: 30rpx;
+}
+
+.footer-text {
+  font-size: 26rpx;
+  color: #666;
+}
+
+.footer-link {
+  font-size: 26rpx;
+  color: #ff6b6b;
+  font-weight: bold;
+}
+
+.demo-info {
+  width: 100%;
+  margin-top: 40rpx;
+  padding: 30rpx;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16rpx;
+  backdrop-filter: blur(10rpx);
+}
+
+.demo-title {
+  display: block;
+  font-size: 28rpx;
+  color: #fff;
+  font-weight: bold;
+  margin-bottom: 15rpx;
+}
+
+.demo-text {
+  display: block;
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 8rpx;
+}
+
+.divider-text {
+  text-align: center;
+  position: relative;
+  margin: 30rpx 0;
+}
+
+.divider-text text {
+  background: #fff;
+  padding: 0 20rpx;
+  color: #999;
+  font-size: 24rpx;
+  position: relative;
+  z-index: 1;
+}
+
+.divider-text::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1rpx;
+  background: #e9ecef;
+}
+
+.wechat-icon {
+  margin-right: 10rpx;
+  font-size: 32rpx;
+}

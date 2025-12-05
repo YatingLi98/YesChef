@@ -1,0 +1,45 @@
+<!--pages/eater/order-history/order-history.wxml-->
+<view class="container">
+  <view class="header">
+    <text class="header-title">My Orders</text>
+  </view>
+
+  <view wx:if="{{orders.length === 0}}" class="empty-state">
+    <text class="empty-icon">📦</text>
+    <text class="empty-text">No orders yet</text>
+    <button class="btn btn-primary mt-30" bindtap="onBrowseMenu">
+      Browse Menu
+    </button>
+  </view>
+
+  <view wx:else class="order-list">
+    <view class="order-card" wx:for="{{orders}}" wx:key="id">
+      <view class="order-header">
+        <view>
+          <text class="order-id">Order #{{item.id.slice(-6)}}</text>
+          <text class="order-time">{{item.createdAt}}</text>
+        </view>
+        <view class="badge badge-{{item.status === 'pending' ? 'warning' : item.status === 'completed' ? 'success' : 'secondary'}}">
+          {{item.status}}
+        </view>
+      </view>
+
+      <view class="order-chef">
+        <text class="label">Chef:</text>
+        <text class="value">{{item.chefName || 'Unknown'}}</text>
+      </view>
+
+      <view class="order-items">
+        <view class="item" wx:for="{{item.items}}" wx:key="foodId" wx:for-item="food">
+          <text class="item-name">{{food.foodName}}</text>
+          <text class="item-qty">× {{food.quantity}}</text>
+        </view>
+      </view>
+
+      <view class="order-note" wx:if="{{item.note}}">
+        <text class="note-label">Note:</text>
+        <text class="note-text">{{item.note}}</text>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,7 @@
+{
+  "desc": "Information about this mini program for WeChat search indexing",
+  "rules": [{
+    "action": "allow",
+    "page": "*"
+  }]
+}

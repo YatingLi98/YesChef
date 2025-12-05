@@ -1,0 +1,84 @@
+/* pages/shared/food-detail/food-detail.wxss */
+.container {
+  padding-bottom: 120rpx;
+}
+
+.image-swiper {
+  width: 100%;
+  height: 500rpx;
+}
+
+.detail-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.content-section {
+  padding: 30rpx;
+}
+
+.food-header {
+  margin-bottom: 20rpx;
+}
+
+.food-name {
+  display: block;
+  font-size: 44rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15rpx;
+}
+
+.food-meta {
+  display: flex;
+  align-items: center;
+}
+
+.chef-info {
+  font-size: 26rpx;
+  color: #666;
+}
+
+.food-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10rpx;
+  margin-bottom: 30rpx;
+}
+
+.section {
+  margin-bottom: 40rpx;
+}
+
+.section-title {
+  display: block;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15rpx;
+}
+
+.section-content {
+  display: block;
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.8;
+}
+
+.instructions {
+  white-space: pre-wrap;
+  background: #f8f9fa;
+  padding: 20rpx;
+  border-radius: 12rpx;
+}
+
+.bottom-actions {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  padding: 20rpx 30rpx;
+  box-shadow: 0 -4rpx 12rpx rgba(0, 0, 0, 0.08);
+}

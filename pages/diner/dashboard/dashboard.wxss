@@ -1,0 +1,130 @@
+/* pages/eater/dashboard/dashboard.wxss */
+.header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 40rpx 30rpx;
+  border-radius: 0 0 32rpx 32rpx;
+  margin-bottom: 30rpx;
+  text-align: center;
+}
+
+.header-title {
+  display: block;
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 8rpx;
+}
+
+.header-subtitle {
+  display: block;
+  font-size: 26rpx;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.stats-overview {
+  display: flex;
+  gap: 20rpx;
+  padding: 0 20rpx;
+  margin-bottom: 40rpx;
+}
+
+.top-foods-section, .insights-section {
+  padding: 0 20rpx;
+  margin-bottom: 40rpx;
+}
+
+.section-header {
+  margin-bottom: 20rpx;
+}
+
+.section-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.top-foods-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15rpx;
+}
+
+.food-rank-card {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.06);
+}
+
+.rank-badge {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20rpx;
+  font-weight: bold;
+}
+
+.rank-1 {
+  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+}
+
+.rank-2 {
+  background: linear-gradient(135deg, #c0c0c0 0%, #e0e0e0 100%);
+}
+
+.rank-3 {
+  background: linear-gradient(135deg, #cd7f32 0%, #e09642 100%);
+}
+
+.rank-number {
+  font-size: 32rpx;
+  color: #fff;
+}
+
+.food-rank-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.food-rank-name {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 6rpx;
+}
+
+.food-rank-count {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.food-rank-icon {
+  font-size: 48rpx;
+}
+
+.insight-card {
+  background: linear-gradient(135deg, #fff9e6 0%, #fff3bf 100%);
+  border-radius: 16rpx;
+  padding: 30rpx;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.06);
+}
+
+.insight-icon {
+  font-size: 48rpx;
+  margin-right: 20rpx;
+}
+
+.insight-text {
+  flex: 1;
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.6;
+}

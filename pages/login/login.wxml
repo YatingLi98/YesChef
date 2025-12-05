@@ -1,0 +1,79 @@
+<!--pages/login/login.wxml-->
+<view class="login-container">
+  <view class="login-header">
+    <text class="login-title">🍔 Food Ordering</text>
+    <text class="login-subtitle">Order delicious food with friends</text>
+  </view>
+
+  <view class="login-form">
+    <view class="input-group">
+      <text class="input-label">Username</text>
+      <input 
+        class="input-field" 
+        placeholder="Enter username" 
+        value="{{username}}"
+        bindinput="onUsernameInput"
+      />
+    </view>
+
+    <view class="input-group">
+      <text class="input-label">Password</text>
+      <input 
+        class="input-field" 
+        type="password"
+        placeholder="Enter password" 
+        value="{{password}}"
+        bindinput="onPasswordInput"
+      />
+    </view>
+
+    <view class="role-selector">
+      <text class="input-label">Login as:</text>
+      <view class="role-options">
+        <view 
+          class="role-option {{role === 'chef' ? 'active' : ''}}" 
+          bindtap="onRoleChange"
+          data-role="chef"
+        >
+          <text class="role-icon">👨‍🍳</text>
+          <text class="role-text">Chef</text>
+        </view>
+        <view 
+          class="role-option {{role === 'eater' ? 'active' : ''}}" 
+          bindtap="onRoleChange"
+          data-role="eater"
+        >
+          <text class="role-icon">🍽️</text>
+          <text class="role-text">Diner</text>
+        </view>
+      </view>
+    </view>
+
+    <button class="btn btn-primary btn-block btn-large mt-40" bindtap="onLogin">
+      Login
+    </button>
+
+    <view class="divider-text mt-30">
+      <text>OR</text>
+    </view>
+
+    <button
+      class="btn btn-success btn-block btn-large mt-20"
+      open-type="getUserInfo"
+      bindgetuserinfo="onWeChatLogin"
+    >
+      <text class="wechat-icon">💬</text> Login with WeChat
+    </button>
+
+    <view class="login-footer">
+      <text class="footer-text">Don't have an account? </text>
+      <text class="footer-link" bindtap="onGoToRegister">Register</text>
+    </view>
+  </view>
+
+  <view class="demo-info">
+    <text class="demo-title">Demo Accounts:</text>
+    <text class="demo-text">Chef: username: chef1, password: 123456</text>
+    <text class="demo-text">Diner: username: diner1, password: 123456</text>
+  </view>
+</view>

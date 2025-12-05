@@ -1,0 +1,60 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/register/register",
+    "pages/chef/menu-manager/menu-manager",
+    "pages/chef/food-editor/food-editor",
+    "pages/chef/orders/orders",
+    "pages/diner/menu/menu",
+    "pages/diner/order-history/order-history",
+    "pages/diner/dashboard/dashboard",
+    "pages/diner/lucky-food/lucky-food",
+    "pages/shared/food-detail/food-detail"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ff6b6b",
+    "navigationBarTitleText": "Food Ordering",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f8f9fa"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#ff6b6b",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/diner/menu/menu",
+        "text": "Menu",
+        "iconPath": "images/menu.png",
+        "selectedIconPath": "images/menu-active.png"
+      },
+      {
+        "pagePath": "pages/diner/lucky-food/lucky-food",
+        "text": "Lucky",
+        "iconPath": "images/lucky.png",
+        "selectedIconPath": "images/lucky-active.png"
+      },
+      {
+        "pagePath": "pages/diner/order-history/order-history",
+        "text": "Orders",
+        "iconPath": "images/order.png",
+        "selectedIconPath": "images/order-active.png"
+      },
+      {
+        "pagePath": "pages/diner/dashboard/dashboard",
+        "text": "Stats",
+        "iconPath": "images/stats.png",
+        "selectedIconPath": "images/stats-active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "permission": {
+    "scope.userLocation": {
+      "desc": "Your location will be used for nearby food recommendations"
+    }
+  }
+}

@@ -1,0 +1,84 @@
+<!--pages/register/register.wxml-->
+<view class="register-container">
+  <view class="register-header">
+    <text class="register-title">Create Account</text>
+    <text class="register-subtitle">Join our food community</text>
+  </view>
+
+  <view class="register-form">
+    <view class="input-group">
+      <text class="input-label">Username</text>
+      <input 
+        class="input-field" 
+        placeholder="Choose a username" 
+        value="{{username}}"
+        bindinput="onUsernameInput"
+      />
+    </view>
+
+    <view class="input-group">
+      <text class="input-label">Password</text>
+      <input 
+        class="input-field" 
+        type="password"
+        placeholder="Choose a password" 
+        value="{{password}}"
+        bindinput="onPasswordInput"
+      />
+    </view>
+
+    <view class="input-group">
+      <text class="input-label">Confirm Password</text>
+      <input 
+        class="input-field" 
+        type="password"
+        placeholder="Confirm your password" 
+        value="{{confirmPassword}}"
+        bindinput="onConfirmPasswordInput"
+      />
+    </view>
+
+    <view class="input-group">
+      <text class="input-label">Nickname</text>
+      <input 
+        class="input-field" 
+        placeholder="Enter your nickname" 
+        value="{{nickname}}"
+        bindinput="onNicknameInput"
+      />
+    </view>
+
+    <view class="role-selector">
+      <text class="input-label">Register as:</text>
+      <view class="role-options">
+        <view 
+          class="role-option {{role === 'chef' ? 'active' : ''}}" 
+          bindtap="onRoleChange"
+          data-role="chef"
+        >
+          <text class="role-icon">👨‍🍳</text>
+          <text class="role-text">Chef</text>
+          <text class="role-desc">Create and share menu</text>
+        </view>
+        <view 
+          class="role-option {{role === 'eater' ? 'active' : ''}}" 
+          bindtap="onRoleChange"
+          data-role="eater"
+        >
+          <text class="role-icon">🍽️</text>
+          <text class="role-text">Diner</text>
+          <text class="role-desc">Order delicious food</text>
+        </view>
+      </view>
+    </view>
+
+    <button class="btn btn-primary btn-block btn-large mt-40" bindtap="onRegister">
+      Register
+    </button>
+
+    <view class="register-footer">
+      <text class="footer-text">Already have an account? </text>
+      <text class="footer-link" bindtap="onGoToLogin">Login</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,70 @@
+<!--pages/chef/menu-manager/menu-manager.wxml-->
+<view class="container">
+  <view class="header">
+    <view class="header-info">
+      <image src="{{userInfo.avatar}}" class="avatar"></image>
+      <view class="header-text">
+        <text class="welcome-text">Welcome, {{userInfo.nickname}}</text>
+        <text class="role-badge">👨‍🍳 Chef</text>
+      </view>
+    </view>
+    <view class="header-actions">
+      <button class="btn btn-outline btn-small" bindtap="onViewOrders">
+        Orders ({{orderCount}})
+      </button>
+      <button class="btn btn-outline btn-small ml-10" bindtap="onLogout">
+        Logout
+      </button>
+    </view>
+  </view>
+
+  <view class="stats-section">
+    <view class="stat-card">
+      <text class="stat-value">{{foodList.length}}</text>
+      <text class="stat-label">Total Dishes</text>
+    </view>
+    <view class="stat-card" style="background: linear-gradient(135deg, #51cf66 0%, #40c057 100%);">
+      <text class="stat-value">{{orderCount}}</text>
+      <text class="stat-label">Total Orders</text>
+    </view>
+  </view>
+
+  <view class="action-section">
+    <button class="btn btn-primary btn-block" bindtap="onAddFood">
+      + Add New Dish
+    </button>
+    <button class="btn btn-success btn-block mt-20" bindtap="onShareMenu">
+      📤 Share Menu with Diners
+    </button>
+  </view>
+
+  <view class="food-list-section">
+    <view class="section-title">
+      <text class="title-text">My Dishes</text>
+    </view>
+
+    <view wx:if="{{foodList.length === 0}}" class="empty-state">
+      <text class="empty-icon">🍽️</text>
+      <text class="empty-text">No dishes yet. Add your first dish!</text>
+    </view>
+
+    <view wx:else class="food-list">
+      <view class="food-card" wx:for="{{foodList}}" wx:key="id">
+        <image src="{{item.images[0]}}" class="food-card-image" mode="aspectFill"></image>
+        <view class="food-card-content">
+          <text class="food-card-title">{{item.name}}</text>
+          <text class="food-card-desc">{{item.description}}</text>
+          <view class="food-card-footer">
+            <view class="food-tags">
+              <text class="tag" wx:for="{{item.tags}}" wx:key="*this" wx:for-item="tag">{{tag}}</text>
+            </view>
+            <view class="food-actions">
+              <text class="action-btn" bindtap="onEditFood" data-id="{{item.id}}">✏️ Edit</text>
+              <text class="action-btn text-warning" bindtap="onDeleteFood" data-id="{{item.id}}">🗑️ Delete</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
