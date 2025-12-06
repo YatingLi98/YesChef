@@ -1,14 +1,14 @@
 {
   "pages": [
-    "pages/login/login",
-    "pages/register/register",
+    "pages/diner/menu/menu",
+    "pages/diner/lucky-food/lucky-food",
+    "pages/diner/order-history/order-history",
+    "pages/diner/dashboard/dashboard",
     "pages/chef/menu-manager/menu-manager",
     "pages/chef/food-editor/food-editor",
     "pages/chef/orders/orders",
-    "pages/diner/menu/menu",
-    "pages/diner/order-history/order-history",
-    "pages/diner/dashboard/dashboard",
-    "pages/diner/lucky-food/lucky-food",
+    "pages/login/login",
+    "pages/register/register",
     "pages/shared/food-detail/food-detail"
   ],
   "window": {
@@ -26,27 +26,19 @@
     "list": [
       {
         "pagePath": "pages/diner/menu/menu",
-        "text": "Menu",
-        "iconPath": "images/menu.png",
-        "selectedIconPath": "images/menu-active.png"
+        "text": "🍽️ Menu"
       },
       {
         "pagePath": "pages/diner/lucky-food/lucky-food",
-        "text": "Lucky",
-        "iconPath": "images/lucky.png",
-        "selectedIconPath": "images/lucky-active.png"
+        "text": "🎲 Lucky"
       },
       {
         "pagePath": "pages/diner/order-history/order-history",
-        "text": "Orders",
-        "iconPath": "images/order.png",
-        "selectedIconPath": "images/order-active.png"
+        "text": "📋 Orders"
       },
       {
         "pagePath": "pages/diner/dashboard/dashboard",
-        "text": "Stats",
-        "iconPath": "images/stats.png",
-        "selectedIconPath": "images/stats-active.png"
+        "text": "📊 Stats"
       }
     ]
   },
@@ -54,7 +46,7 @@
   "sitemapLocation": "sitemap.json",
   "permission": {
     "scope.userLocation": {
-      "desc": "Your location will be used for nearby food recommendations"
+      "desc": "For food nearby"
     }
   }
 }

@@ -1,5 +1,7 @@
 <!--pages/eater/dashboard/dashboard.wxml-->
 <view class="container">
+  <role-switcher />
+  
   <view class="header">
     <text class="header-title">My Food Stats</text>
     <text class="header-subtitle">Your ordering insights</text>

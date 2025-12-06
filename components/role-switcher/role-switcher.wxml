@@ -1,0 +1,8 @@
+<!-- components/role-switcher/role-switcher.wxml -->
+<view class="role-switcher">
+  <view class="role-badge {{activeRole === 'chef' ? 'chef-active' : 'diner-active'}}" bindtap="onSwitchRole">
+    <text class="role-icon">{{activeRole === 'chef' ? '👨‍🍳' : '🍽️'}}</text>
+    <text class="role-name">{{activeRole === 'chef' ? 'Chef' : 'Diner'}}</text>
+    <text class="switch-hint">🔄</text>
+  </view>
+</view>

@@ -1,5 +1,7 @@
 <!--pages/eater/order-history/order-history.wxml-->
 <view class="container">
+  <role-switcher />
+  
   <view class="header">
     <text class="header-title">My Orders</text>
   </view>

@@ -6,74 +6,32 @@
   </view>
 
   <view class="login-form">
-    <view class="input-group">
-      <text class="input-label">Username</text>
-      <input 
-        class="input-field" 
-        placeholder="Enter username" 
-        value="{{username}}"
-        bindinput="onUsernameInput"
-      />
-    </view>
-
-    <view class="input-group">
-      <text class="input-label">Password</text>
-      <input 
-        class="input-field" 
-        type="password"
-        placeholder="Enter password" 
-        value="{{password}}"
-        bindinput="onPasswordInput"
-      />
-    </view>
-
-    <view class="role-selector">
-      <text class="input-label">Login as:</text>
-      <view class="role-options">
-        <view 
-          class="role-option {{role === 'chef' ? 'active' : ''}}" 
-          bindtap="onRoleChange"
-          data-role="chef"
-        >
-          <text class="role-icon">👨‍🍳</text>
-          <text class="role-text">Chef</text>
-        </view>
-        <view 
-          class="role-option {{role === 'eater' ? 'active' : ''}}" 
-          bindtap="onRoleChange"
-          data-role="eater"
-        >
-          <text class="role-icon">🍽️</text>
-          <text class="role-text">Diner</text>
-        </view>
-      </view>
-    </view>
-
-    <button class="btn btn-primary btn-block btn-large mt-40" bindtap="onLogin">
-      Login
-    </button>
-
-    <view class="divider-text mt-30">
-      <text>OR</text>
+    <view class="welcome-text">
+      <text class="welcome-title">Welcome!</text>
+      <text class="welcome-desc">Login with your WeChat account to get started</text>
     </view>
 
     <button
-      class="btn btn-success btn-block btn-large mt-20"
-      open-type="getUserInfo"
-      bindgetuserinfo="onWeChatLogin"
+      class="btn btn-success btn-block btn-large wechat-login-btn"
+      bindtap="onWeChatLogin"
     >
       <text class="wechat-icon">💬</text> Login with WeChat
     </button>
 
-    <view class="login-footer">
-      <text class="footer-text">Don't have an account? </text>
-      <text class="footer-link" bindtap="onGoToRegister">Register</text>
+    <view class="features-info">
+      <text class="feature-title">What you can do:</text>
+      <view class="feature-item">
+        <text class="feature-icon">👨‍🍳</text>
+        <text class="feature-text">As Chef: Create menu, manage orders</text>
+      </view>
+      <view class="feature-item">
+        <text class="feature-icon">🍽️</text>
+        <text class="feature-text">As Diner: Browse menu, place orders</text>
+      </view>
+      <view class="feature-item">
+        <text class="feature-icon">🔄</text>
+        <text class="feature-text">Switch roles anytime!</text>
+      </view>
     </view>
-  </view>
-
-  <view class="demo-info">
-    <text class="demo-title">Demo Accounts:</text>
-    <text class="demo-text">Chef: username: chef1, password: 123456</text>
-    <text class="demo-text">Diner: username: diner1, password: 123456</text>
   </view>
 </view>

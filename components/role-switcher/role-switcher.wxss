@@ -1,0 +1,55 @@
+/* components/role-switcher/role-switcher.wxss */
+.role-switcher {
+  position: fixed;
+  top: 20rpx;
+  right: 20rpx;
+  z-index: 1000;
+}
+
+.role-badge {
+  display: flex;
+  align-items: center;
+  padding: 12rpx 24rpx;
+  border-radius: 50rpx;
+  background: #fff;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
+}
+
+.role-badge:active {
+  transform: scale(0.95);
+}
+
+.chef-active {
+  border: 2rpx solid #ff6b6b;
+  background: #fff5f5;
+}
+
+.diner-active {
+  border: 2rpx solid #51cf66;
+  background: #f0fdf4;
+}
+
+.role-icon {
+  font-size: 32rpx;
+  margin-right: 8rpx;
+}
+
+.role-name {
+  font-size: 26rpx;
+  font-weight: bold;
+  margin-right: 8rpx;
+}
+
+.chef-active .role-name {
+  color: #ff6b6b;
+}
+
+.diner-active .role-name {
+  color: #51cf66;
+}
+
+.switch-hint {
+  font-size: 24rpx;
+  opacity: 0.6;
+}

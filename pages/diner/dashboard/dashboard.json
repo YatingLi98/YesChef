@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "role-switcher": "/components/role-switcher/role-switcher"
+  },
   "navigationBarTitleText": "Statistics"
 }

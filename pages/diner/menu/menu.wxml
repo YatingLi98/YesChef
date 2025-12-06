@@ -1,5 +1,7 @@
 <!--pages/eater/menu/menu.wxml-->
 <view class="container">
+  <role-switcher />
+  
   <view class="header">
     <view class="header-content">
       <text class="header-title">Browse Menu</text>

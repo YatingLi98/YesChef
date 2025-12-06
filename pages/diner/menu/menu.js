@@ -21,7 +21,8 @@ Page({
     const app = getApp()
     const userInfo = app.globalData.userInfo
 
-    if (!userInfo || userInfo.role !== 'diner') {
+    if (!userInfo) {
+      // Not logged in, redirect to login
       wx.redirectTo({
         url: '/pages/login/login'
       })

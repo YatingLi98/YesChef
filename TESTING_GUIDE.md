@@ -153,13 +153,132 @@
 
 ---
 
+## 🤖 Automated Testing with WeChat SDK
+
+WeChat provides an official automation SDK for programmatic testing, similar to Selenium WebDriver or Puppeteer. This enables automated test scripts to control and test your mini program.
+
+### Official Automation SDK (JavaScript/Node.js)
+
+**Documentation:** [https://developers.weixin.qq.com/miniprogram/dev/devtools/auto/](https://developers.weixin.qq.com/miniprogram/dev/devtools/auto/)
+
+#### Prerequisites:
+1. **Enable CLI/HTTP in WeChat Developer Tools:**
+   - Open WeChat Developer Tools
+   - Go to **Settings → Security**
+   - Enable **"CLI/HTTP Service"** option
+   - ⚠️ This MUST be enabled or automation won't work
+
+#### Installation:
+```bash
+npm install miniprogram-automator --save-dev
+```
+
+#### Basic Test Example:
+```javascript
+const automator = require('miniprogram-automator')
+
+automator.launch({
+  projectPath: 'q:/eating',  // Your project path
+}).then(async miniProgram => {
+  const page = await miniProgram.currentPage()
+  
+  // Get element and interact
+  const element = await page.$('.login-btn')
+  console.log(await element.attribute('class'))
+  await element.tap()
+  
+  // Close mini program
+  await miniProgram.close()
+})
+```
+
+#### Key Capabilities:
+- **Launch mini program** programmatically
+- **Navigate** between pages
+- **Query elements** using selectors
+- **Simulate user interactions** (tap, input, scroll)
+- **Take screenshots** for visual testing
+- **Access page data** and state
+- **Mock API responses**
+- **Execute JavaScript** in page context
+
+#### Useful SDK References:
+- **Automator API**: Control mini program lifecycle
+- **MiniProgram API**: Navigate, switch tabs, get current page
+- **Page API**: Query elements, evaluate scripts, get data
+- **Element API**: Tap, input, get attributes, take screenshots
+
+### Python Alternative: Minium Framework
+
+For Python developers, WeChat offers **Minium** - a Python-based testing framework.
+
+**Features:**
+- Native Python syntax
+- Runs locally or in WeChat Developer Tools cloud testing plugin
+- Similar API to JavaScript SDK
+- Integrated with popular Python testing frameworks
+
+**Documentation:** Mentioned in official docs but requires Developer Tools cloud testing plugin
+
+---
+
+## 🧪 Local Development Testing Tools
+
+### Built-in Developer Tools Features:
+
+1. **Console Tab**
+   - View `console.log()` output
+   - Execute JavaScript commands
+   - Monitor errors and warnings
+
+2. **Network Tab**
+   - Monitor API requests
+   - View request/response data
+   - Check loading times
+   - Mock network conditions
+
+3. **Storage Tab**
+   - Inspect local storage data
+   - View/edit storage keys
+   - Clear storage for testing
+   - Monitor storage usage
+
+4. **AppData Tab**
+   - Real-time view of page data
+   - Inspect component state
+   - Watch data changes
+   - Useful for debugging data binding
+
+5. **Wxml Tab**
+   - Inspect element structure
+   - View element styles
+   - Similar to browser DevTools
+
+6. **Debugger**
+   - Set breakpoints in code
+   - Step through execution
+   - Watch variables
+   - Call stack inspection
+
+### Remote Debugging:
+- Click **"Preview"** button
+- Scan QR code on phone
+- Developer Tools console shows phone logs in real-time
+- Debug actual device issues while coding
+
+---
+
 ## 📞 Need Help?
 
 - [WeChat Mini Program Documentation](https://developers.weixin.qq.com/miniprogram/en/dev/framework/)
 - [Developer Tools Guide](https://developers.weixin.qq.com/miniprogram/en/dev/devtools/devtools.html)
+- [Automation SDK Documentation](https://developers.weixin.qq.com/miniprogram/dev/devtools/auto/)
+- [Quick Start Guide](https://developers.weixin.qq.com/miniprogram/dev/devtools/auto/quick-start.html)
 
 ---
 
 **🎉 That's it! You're ready to test on your phone!**
 
 Start with the Preview method (Method 1) - it takes less than 2 minutes to get running on your phone.
+
+For automated testing, check out the WeChat Automation SDK to write test scripts that can run continuously.

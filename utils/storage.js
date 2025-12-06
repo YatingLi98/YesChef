@@ -4,26 +4,9 @@
 
 // Initialize data
 function initData() {
-  // Initialize user list
+  // Initialize user list (each user has both roles)
   if (!wx.getStorageSync('users_list')) {
-    wx.setStorageSync('users_list', [
-      {
-        id: '1',
-        username: 'chef1',
-        password: '123456',
-        role: 'chef',
-        nickname: 'Chef Master',
-        avatar: 'https://via.placeholder.com/150/ff6b6b/ffffff?text=Chef'
-      },
-      {
-        id: '2',
-        username: 'eater1',
-        password: '123456',
-        role: 'diner',
-        nickname: 'Food Lover',
-        avatar: 'https://via.placeholder.com/150/51cf66/ffffff?text=Eater'
-      }
-    ])
+    wx.setStorageSync('users_list', [])
   }
 
   // Initialize food list
@@ -54,6 +37,22 @@ function addUser(user) {
 function getUserByUsername(username) {
   const users = getUsers()
   return users.find(u => u.username === username)
+}
+
+function getUserByWechatId(openid) {
+  const users = getUsers()
+  return users.find(u => u.openid === openid)
+}
+
+function updateUser(id, updates) {
+  const users = getUsers()
+  const index = users.findIndex(u => u.id === id)
+  if (index !== -1) {
+    users[index] = { ...users[index], ...updates, updatedAt: new Date().toISOString() }
+    wx.setStorageSync('users_list', users)
+    return users[index]
+  }
+  return null
 }
 
 // Food related
@@ -174,6 +173,8 @@ module.exports = {
   getUsers,
   addUser,
   getUserByUsername,
+  getUserByWechatId,
+  updateUser,
   // Food
   getFoods,
   getFoodById,

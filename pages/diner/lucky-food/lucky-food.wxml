@@ -1,5 +1,7 @@
 <!--pages/eater/lucky-food/lucky-food.wxml-->
 <view class="container">
+  <role-switcher />
+  
   <view class="header">
     <text class="header-title">🎲 Lucky Food Suggester</text>
     <text class="header-subtitle">Let fate decide your meal!</text>

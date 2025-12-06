@@ -2,145 +2,143 @@
 const storage = require('../../utils/storage.js')
 
 Page({
-  data: {
-    username: '',
-    password: '',
-    role: 'diner' // default role
-  },
+  data: {},
 
   onLoad() {
     // Initialize storage data
     storage.initData()
   },
 
-  onUsernameInput(e) {
-    this.setData({
-      username: e.detail.value
-    })
-  },
-
-  onPasswordInput(e) {
-    this.setData({
-      password: e.detail.value
-    })
-  },
-
-  onRoleChange(e) {
-    this.setData({
-      role: e.currentTarget.dataset.role
-    })
-  },
-
-  onLogin() {
-    const { username, password, role } = this.data
-
-    // Validate input
-    if (!username || !password) {
-      wx.showToast({
-        title: 'Please enter username and password',
-        icon: 'none'
-      })
-      return
-    }
-
-    // Find user
-    const user = storage.getUserByUsername(username)
-
-    if (!user) {
-      wx.showToast({
-        title: 'User not found',
-        icon: 'none'
-      })
-      return
-    }
-
-    // Verify password
-    if (user.password !== password) {
-      wx.showToast({
-        title: 'Incorrect password',
-        icon: 'none'
-      })
-      return
-    }
-
-    // Verify role
-    if (user.role !== role) {
-      wx.showToast({
-        title: `This account is not a ${role}`,
-        icon: 'none'
-      })
-      return
-    }
-
-    // Login success
-    wx.showToast({
-      title: 'Login successful',
-      icon: 'success'
-    })
-
-    // Save login state
-    const app = getApp()
-    app.login(user)
-  },
-
-  onWeChatLogin(e) {
-    if (!e.detail.userInfo) {
-      wx.showToast({
-        title: 'Authorization cancelled',
-        icon: 'none'
-      })
-      return
-    }
-
-    const wechatUserInfo = e.detail.userInfo
+  onWeChatLogin() {
+    console.log('=== Login button clicked ===')
     
-    // Check if user exists in local storage
-    const existingUser = storage.getUserByUsername(wechatUserInfo.nickName)
-    
-    if (existingUser) {
-      // User exists, login directly
-      wx.showToast({
-        title: 'Login successful',
-        icon: 'success'
-      })
-      
-      const app = getApp()
-      app.login(existingUser)
-    } else {
-      // New user, need to select role
-      wx.showModal({
-        title: 'Welcome!',
-        content: 'Are you a Chef or a Diner?',
-        confirmText: 'Chef',
-        cancelText: 'Diner',
-        success: (res) => {
-          const role = res.confirm ? 'chef' : 'diner'
-          
-          // Create new user with WeChat info
-          const newUser = storage.addUser({
-            username: wechatUserInfo.nickName,
-            password: Date.now().toString(), // Generate random password
-            nickname: wechatUserInfo.nickName,
-            role: role,
-            avatar: wechatUserInfo.avatarUrl,
-            wechatAuth: true
-          })
+    // Show loading
+    wx.showLoading({
+      title: 'Logging in...',
+      mask: true
+    })
 
-          wx.showToast({
-            title: 'Account created!',
-            icon: 'success'
-          })
-
-          const app = getApp()
-          app.login(newUser)
+    // Get WeChat login code
+    wx.login({
+      success: (loginRes) => {
+        const code = loginRes.code
+        console.log('WeChat login code:', code)
+        
+        // In production: Send code to backend to get real openid
+        // For development: Use code as simulated openid
+        const simulatedOpenId = `wx_${code.substring(0, 8)}`
+        console.log('Simulated OpenID:', simulatedOpenId)
+        
+        // For development, generate mock user info
+        const timestamp = Date.now()
+        const mockUserInfo = {
+          nickName: `User${timestamp.toString().substring(8)}`,
+          avatarUrl: 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
         }
-      })
-    }
+        console.log('Mock user info:', mockUserInfo)
+        
+        wx.hideLoading()
+        
+        // Check if user exists by openid
+        const existingUser = storage.getUserByWechatId(simulatedOpenId)
+        console.log('Existing user:', existingUser)
+        
+        if (existingUser) {
+          // User exists, login with default role (diner)
+          console.log('Logging in existing user as diner')
+          
+          // Save user data IMMEDIATELY before navigation
+          wx.setStorageSync('userInfo', existingUser)
+          wx.setStorageSync('activeRole', 'diner')
+          console.log('User data saved to storage')
+
+          // Update global data
+          const app = getApp()
+          app.globalData.userInfo = existingUser
+          app.globalData.activeRole = 'diner'
+          console.log('Global data updated')
+          
+          wx.showToast({
+            title: 'Welcome back!',
+            icon: 'success',
+            duration: 1500
+          })
+          
+          setTimeout(() => {
+            console.log('Navigating to diner home')
+            app.navigateToRoleHome('diner')
+          }, 1500)
+        } else {
+          // New user, create account with both roles
+          console.log('Creating new user...')
+          this.createNewUser(mockUserInfo, simulatedOpenId)
+        }
+      },
+      fail: (err) => {
+        wx.hideLoading()
+        console.error('wx.login failed:', err)
+        wx.showToast({
+          title: 'Login failed, please try again',
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    })
   },
 
-  onGoToRegister() {
-    wx.navigateTo({
-      url: '/pages/register/register'
+  createNewUser(userInfo, openid) {
+    console.log('=== Creating new user ===')
+    console.log('User info:', userInfo)
+    console.log('OpenID:', openid)
+    
+    wx.showModal({
+      title: 'Welcome! 🎉',
+      content: 'Choose your starting role. You can switch anytime!',
+      confirmText: 'Chef',
+      cancelText: 'Diner',
+      success: (res) => {
+        console.log('Modal response:', res)
+        const initialRole = res.confirm ? 'chef' : 'diner'
+        console.log('Selected role:', initialRole)
+        
+        // Create new user with WeChat info
+        // User has BOTH roles, but starts with one active
+        const newUser = storage.addUser({
+          openid: openid,
+          username: userInfo.nickName,
+          nickname: userInfo.nickName,
+          avatar: userInfo.avatarUrl,
+          wechatAuth: true,
+          hasChefRole: true,  // Everyone has both roles
+          hasDinerRole: true
+        })
+        console.log('New user created:', newUser)
+
+        // Save user data IMMEDIATELY before navigation
+        wx.setStorageSync('userInfo', newUser)
+        wx.setStorageSync('activeRole', initialRole)
+        console.log('User data saved to storage')
+
+        // Update global data
+        const app = getApp()
+        app.globalData.userInfo = newUser
+        app.globalData.activeRole = initialRole
+        console.log('Global data updated')
+
+        wx.showToast({
+          title: `Welcome as ${initialRole === 'chef' ? 'Chef' : 'Diner'}!`,
+          icon: 'success',
+          duration: 1500
+        })
+
+        setTimeout(() => {
+          console.log('Navigating to role home:', initialRole)
+          app.navigateToRoleHome(initialRole)
+        }, 1500)
+      },
+      fail: (err) => {
+        console.error('Modal failed:', err)
+      }
     })
   }
 })
